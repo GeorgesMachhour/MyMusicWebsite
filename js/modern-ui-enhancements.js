@@ -93,16 +93,24 @@
     // ===== Smooth Scroll Enhancement =====
     function enhanceSmoothScroll() {
         $('a[href^="#"]').on('click', function(e) {
-            var target = $(this.getAttribute('href'));
-            if (target.length) {
-                e.preventDefault();
-                $('html, body').stop().animate({
-                    scrollTop: target.offset().top - 80
-                }, 1000, 'swing');
-                
-                // Close mobile menu if open
-                if ($(window).width() < 768) {
-                    $('.navbar-collapse').collapse('hide');
+            var href = this.getAttribute('href');
+            // Only handle internal hash links
+            if (href && href.length > 1 && href.indexOf('#') === 0) {
+                try {
+                    var target = $(href);
+                    if (target.length) {
+                        e.preventDefault();
+                        $('html, body').stop().animate({
+                            scrollTop: target.offset().top - 80
+                        }, 1000, 'swing');
+                        
+                        // Close mobile menu if open
+                        if ($(window).width() < 768) {
+                            $('.navbar-collapse').collapse('hide');
+                        }
+                    }
+                } catch(err) {
+                    // Ignore selector errors for invalid hrefs
                 }
             }
         });
