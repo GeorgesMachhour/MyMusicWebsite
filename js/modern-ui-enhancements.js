@@ -110,7 +110,7 @@
                         }
                     }
                 } catch(err) {
-                    // Ignore selector errors for invalid hrefs
+                    // Ignore jQuery selector errors for malformed hash fragments or non-existent IDs
                 }
             }
         });
