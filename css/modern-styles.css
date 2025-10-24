@@ -1,0 +1,70 @@
+/**
+ * modern-styles.css
+ */
+
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    color: #333;
+}
+
+/* Header styles */
+.header {
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 2s ease-in;
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Music note icon */
+.music-icon {
+    font-size: 50px;
+    color: #fff;
+    animation: bounce 1s infinite;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        font-size: 24px;
+    }
+    .music-icon {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+}
