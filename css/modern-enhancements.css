@@ -1,0 +1,577 @@
+/**
+ * Modern UI/UX Enhancements
+ * This file adds modern design improvements while maintaining existing structure
+ */
+
+/* ===== CSS Variables for Theme Consistency ===== */
+:root {
+    /* Primary Colors */
+    --primary-color: #f23030;
+    --primary-dark: #d12323;
+    --primary-light: #ff4d4d;
+    
+    /* Neutral Colors */
+    --dark-bg: #252c37;
+    --light-bg: #fafafa;
+    --white: #ffffff;
+    --text-dark: #252c37;
+    --text-light: #757c7e;
+    
+    /* Accent Colors */
+    --accent-blue: #3da1e3;
+    --accent-purple: #ba01ff;
+    --accent-green: #53ba83;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.25);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+}
+
+/* ===== Smooth Scrolling Behavior ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== Enhanced Navigation ===== */
+.navbar {
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.comeup {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Active Navigation Item Indicator */
+.navbar-default .navbar-nav > li.active > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    height: 3px;
+    background: var(--primary-color);
+    animation: slideInBottom 0.3s ease;
+}
+
+@keyframes slideInBottom {
+    from {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* Navigation Link Hover Effects */
+.navbar-default .navbar-nav > li > a {
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+.navbar-default .navbar-nav > li > a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--primary-color);
+    transition: all var(--transition-normal);
+    transform: translateX(-50%);
+}
+
+.navbar-default .navbar-nav > li > a:hover::before {
+    width: 80%;
+}
+
+/* ===== Hamburger Menu Enhancement ===== */
+.navbar-toggle {
+    transition: all var(--transition-normal);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    padding: 9px 10px;
+}
+
+.navbar-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.navbar-toggle .icon-bar {
+    transition: all var(--transition-fast);
+    height: 3px;
+    border-radius: 2px;
+}
+
+/* ===== Enhanced Social Links ===== */
+.secondary-menu .sm-social-link a,
+footer .social a {
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.secondary-menu .sm-social-link a::before,
+footer .social a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width var(--transition-normal), height var(--transition-normal);
+}
+
+.secondary-menu .sm-social-link a:hover::before,
+footer .social a:hover::before {
+    width: 100%;
+    height: 100%;
+}
+
+.secondary-menu .sm-social-link a:hover,
+footer .social a:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== Music-Themed Equalizer Animation ===== */
+@keyframes equalizer {
+    0%, 100% { height: 10px; }
+    50% { height: 30px; }
+}
+
+.music-equalizer {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.music-equalizer span {
+    display: inline-block;
+    width: 4px;
+    background: var(--primary-color);
+    animation: equalizer 0.8s ease-in-out infinite;
+}
+
+.music-equalizer span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.music-equalizer span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.music-equalizer span:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+/* ===== Enhanced Card Designs ===== */
+.featured-item,
+.why-item,
+.events-item,
+.contact-item {
+    transition: all var(--transition-normal);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.featured-item:hover,
+.events-item:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+}
+
+.featured-item .figure,
+.events-item .figure {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.featured-item .figure img,
+.events-item .figure img {
+    transition: transform var(--transition-slow);
+}
+
+.featured-item:hover .figure img,
+.events-item:hover .figure img {
+    transform: scale(1.1);
+}
+
+/* ===== Work With Us Cards ===== */
+.why-item {
+    position: relative;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.why-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left var(--transition-slow);
+}
+
+.why-item:hover::before {
+    left: 100%;
+}
+
+.why-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+}
+
+.why-number {
+    transition: all var(--transition-normal);
+}
+
+.why-item:hover .why-number {
+    transform: scale(1.1);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Playlist Enhanced Hover Effects ===== */
+.playlist-number {
+    transition: all var(--transition-normal);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.playlist-number::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--primary-color);
+    transform: scaleY(0);
+    transition: transform var(--transition-normal);
+}
+
+.playlist-number:hover::before {
+    transform: scaleY(1);
+}
+
+.playlist-number:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-md);
+}
+
+.music-icon a {
+    transition: all var(--transition-normal);
+    border-radius: 50%;
+}
+
+.music-icon a:hover {
+    background: var(--primary-color);
+    color: var(--white) !important;
+    transform: scale(1.2) rotate(360deg);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== Button Enhancements ===== */
+.btn-theme {
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-theme::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width var(--transition-slow), height var(--transition-slow);
+}
+
+.btn-theme:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-theme:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-theme:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ===== Scroll-Triggered Animations ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ===== Enhanced Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: 0.5px;
+}
+
+.default-heading h2,
+.default-heading-shadow h2 {
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Loading Animation ===== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity var(--transition-slow), visibility var(--transition-slow);
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== Pulsing Elements ===== */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ===== Album Details Enhancement ===== */
+.album-details {
+    transition: all var(--transition-normal);
+}
+
+.album-details h4 {
+    position: relative;
+    display: inline-block;
+}
+
+.album-details h4::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width var(--transition-normal);
+}
+
+.album-details:hover h4::after {
+    width: 100%;
+}
+
+/* ===== Form Enhancements ===== */
+.form-control {
+    transition: all var(--transition-normal);
+    border: 2px solid #ddd;
+}
+
+.form-control:focus {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== Contact Items Enhancement ===== */
+.contact-item i {
+    transition: all var(--transition-normal);
+}
+
+.contact-item:hover i {
+    transform: scale(1.2) rotate(360deg);
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+}
+
+/* ===== Promo Section Enhancement ===== */
+.promo .promo-element p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Banner Enhancements ===== */
+.carousel-caption h2,
+.carousel-caption h3 {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-control span {
+    transition: all var(--transition-normal);
+}
+
+.carousel-control:hover span {
+    transform: scale(1.2);
+}
+
+/* ===== Back to Top Enhancement ===== */
+.totop a {
+    transition: all var(--transition-normal);
+}
+
+.totop a:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===== Responsive Enhancements ===== */
+@media (max-width: 768px) {
+    :root {
+        --spacing-xs: 6px;
+        --spacing-sm: 12px;
+        --spacing-md: 18px;
+        --spacing-lg: 24px;
+        --spacing-xl: 36px;
+    }
+    
+    .featured-item:hover,
+    .events-item:hover,
+    .why-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* Keep some hover effects on mobile but reduce intensity */
+    .navbar-default .navbar-nav > li > a:hover::before {
+        width: 0;
+    }
+}
+
+/* ===== Accessibility Improvements ===== */
+*:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+button:focus,
+a:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ===== Print Styles ===== */
+@media print {
+    .navbar,
+    .secondary-menu,
+    footer,
+    .totop {
+        display: none;
+    }
+}
+
+/* ===== Prefers Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
